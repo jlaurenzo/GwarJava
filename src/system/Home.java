@@ -3,7 +3,7 @@ package system;
 public class Home {
 
     public void showHome() {
-        System.out.println("YOU ARE NOW IN THE HOME PAGE!");
+        System.out.println("HOME PAGE!");
 
     }
 }

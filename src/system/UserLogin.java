@@ -9,9 +9,10 @@ public class UserLogin {
     public static void main(String[] args) {
         Scanner userInput = new Scanner(System.in);
         int attempt = 0;
+        int accountChoice;
         boolean userLoggedIn = false;
         String accountName;
-        String accountPassword;
+        String accountPassword = "";
 
         String testAccountName = "notc++";
         String testPassword = "nazi";
@@ -21,12 +22,28 @@ public class UserLogin {
             System.out.println("-----------LOGIN-----------");
             System.out.print("Enter Account Name: ");
             accountName = userInput.nextLine();
-            System.out.print("Enter Password: ");
-            accountPassword = userInput.nextLine();
 
-            System.out.println(accountName);
-            System.out.println(accountPassword);
+            if (accountName.equals(testAccountName)) {
+                System.out.print("Enter Password: ");
+                accountPassword = userInput.nextLine();
 
+            } else {
+                System.out.println("Account not found!");
+                System.out.println("Try again or create another account");
+                System.out.print("(1) to try gain | (2) to create account: ");
+                accountChoice = userInput.nextInt();
+                userInput.nextLine();
+
+                if (accountChoice == 2) {
+                    CreateAccount createAccount = new CreateAccount();
+                    createAccount.createNewAccount();
+
+                } else {
+                    System.out.println("Try again");
+                    attempt++;
+                }
+
+            }
             if (accountName.equals(testAccountName)) {
                 if (accountPassword.equals(testPassword)) {
                     userLoggedIn = true;
@@ -40,13 +57,11 @@ public class UserLogin {
                     System.out.println("Incorrect Password! try again");
                     attempt++;
                 }
-            } else {
-                System.out.println("Account not found!");
-                attempt++;
             } if (attempt == 3) {
                 System.out.println("You have reached the maximum amount of trials, try again later!");
                 break;
             }
+
 
         }
 
